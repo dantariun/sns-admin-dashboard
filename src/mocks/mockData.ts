@@ -1,6 +1,7 @@
 import type { Member } from '@/types/member';
 import type { Feed, Comment } from '@/types/feed';
 import type { Report } from '@/types/report';
+import type { Notice, Faq, FaqCategory } from '@/types/notice';
 import type { DashboardStats, DashboardCharts } from '@/types/stats';
 
 export const MOCK_ADMIN = {
@@ -129,3 +130,58 @@ export const MOCK_REPORTS: Report[] = Array.from({ length: 40 }, (_, i) => {
     createdAt: new Date(Date.now() - (40 - i) * 86400_000).toISOString(),
   };
 });
+
+// ─── Notices ─────────────────────────────────────────────────
+const NOTICE_TITLES = [
+  '서비스 이용약관 개정 안내',
+  '개인정보 처리방침 변경 안내',
+  '앱 업데이트 안내 (v2.5.0)',
+  '서버 점검 안내 (11월 20일)',
+  '피드 기능 개선 안내',
+  '신고 처리 기준 업데이트',
+  '계정 보안 강화 안내',
+  '크리스마스 이벤트 안내',
+  '연말 결산 서비스 현황',
+  '2027년 새해 인사',
+];
+const NOTICE_CONTENT = `안녕하세요, SNS 운영팀입니다.
+
+서비스 품질 향상을 위해 아래와 같이 안내 드립니다.
+
+주요 변경 사항을 꼼꼼히 확인해 주시고, 궁금하신 점은 고객센터를 통해 문의해 주시기 바랍니다.
+
+감사합니다.`;
+
+export const MOCK_NOTICES: Notice[] = Array.from({ length: 15 }, (_, i) => ({
+  id: i + 1,
+  title: NOTICE_TITLES[i % NOTICE_TITLES.length] + (i >= NOTICE_TITLES.length ? ` (${Math.floor(i / NOTICE_TITLES.length) + 1})` : ''),
+  content: NOTICE_CONTENT,
+  isPublished: i % 5 !== 4,
+  createdAt: new Date(Date.now() - (15 - i) * 86400_000 * 5).toISOString(),
+  updatedAt: new Date(Date.now() - (15 - i) * 86400_000 * 4).toISOString(),
+}));
+
+// ─── FAQs ────────────────────────────────────────────────────
+const FAQ_DATA: { category: FaqCategory; question: string; answer: string }[] = [
+  { category: 'ACCOUNT', question: '비밀번호를 잊어버렸어요.', answer: '로그인 화면에서 "비밀번호 찾기"를 눌러 가입 시 등록한 이메일로 재설정 링크를 받으세요.' },
+  { category: 'ACCOUNT', question: '계정을 탈퇴하려면 어떻게 해야 하나요?', answer: '설정 > 계정 관리 > 탈퇴에서 직접 탈퇴할 수 있습니다. 탈퇴 후 30일간 복구가 가능하며 이후 모든 데이터는 삭제됩니다.' },
+  { category: 'ACCOUNT', question: '닉네임은 언제든 변경할 수 있나요?', answer: '닉네임은 30일에 한 번 변경 가능합니다. 프로필 편집 화면에서 변경할 수 있습니다.' },
+  { category: 'ACCOUNT', question: '이메일 주소를 변경하고 싶어요.', answer: '설정 > 계정 관리 > 이메일 변경에서 새 이메일을 입력하고 인증 절차를 완료하면 변경됩니다.' },
+  { category: 'FEED', question: '피드에 올린 사진을 삭제하려면 어떻게 하나요?', answer: '게시물 우측 상단의 ⋯ 메뉴를 눌러 "삭제"를 선택하세요. 삭제된 게시물은 복구되지 않습니다.' },
+  { category: 'FEED', question: '게시물에 최대 몇 장까지 사진을 올릴 수 있나요?', answer: '게시물 당 최대 10장의 사진 또는 동영상을 첨부할 수 있습니다.' },
+  { category: 'FEED', question: '특정 사용자의 게시물이 보이지 않게 하려면요?', answer: '해당 계정 프로필에서 "차단" 또는 "숨기기"를 선택하면 됩니다.' },
+  { category: 'REPORT', question: '신고한 게시물은 어떻게 처리되나요?', answer: '신고 접수 후 운영팀이 24시간 내 검토합니다. 위반 사항이 확인되면 경고·블라인드·계정 정지 등의 조치가 이루어집니다.' },
+  { category: 'REPORT', question: '잘못된 신고를 취소할 수 있나요?', answer: '신고 접수 후 취소는 불가합니다. 운영팀 검토 과정에서 무효 신고로 판단되면 기각 처리됩니다.' },
+  { category: 'REPORT', question: '계정이 정지되었어요. 어떻게 하나요?', answer: '고객센터 > 1:1 문의로 정지 사유와 이의 신청 내용을 보내주시면 검토 후 답변드립니다.' },
+  { category: 'ETC', question: '알림이 오지 않아요.', answer: '기기 설정에서 앱 알림 권한을 확인하고, 앱 내 설정 > 알림에서 각 항목이 켜져 있는지 확인해 주세요.' },
+  { category: 'ETC', question: '앱이 자꾸 튕겨요.', answer: '앱을 최신 버전으로 업데이트하고, 캐시를 삭제한 뒤 재시작해 보세요. 그래도 문제가 계속되면 고객센터로 문의해 주세요.' },
+];
+
+export const MOCK_FAQS: Faq[] = FAQ_DATA.map((d, i) => ({
+  id: i + 1,
+  category: d.category,
+  question: d.question,
+  answer: d.answer,
+  createdAt: new Date(Date.now() - (12 - i) * 86400_000 * 7).toISOString(),
+  updatedAt: new Date(Date.now() - (12 - i) * 86400_000 * 6).toISOString(),
+}));
