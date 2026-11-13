@@ -52,13 +52,19 @@
 
 | 로그인 | 대시보드 |
 |--------|----------|
-| ![login](https://placehold.co/480x300?text=Login) | ![dashboard](https://placehold.co/480x300?text=Dashboard) |
+| ![login](docs/screenshots/01_login.jpg) | ![dashboard](docs/screenshots/02_dashboard.jpg) |
 
-| 회원 목록 | 피드 상세 |
+| 회원 관리 | 피드 관리 |
 |-----------|-----------|
-| ![members](https://placehold.co/480x300?text=Members) | ![feed](https://placehold.co/480x300?text=Feed+Detail) |
+| ![members](docs/screenshots/03_members.jpg) | ![feeds](docs/screenshots/04_feeds.jpg) |
 
-> 스크린샷은 각 Phase 완성 후 순차적으로 업데이트됩니다.
+| 신고 관리 | 공지사항 |
+|-----------|----------|
+| ![reports](docs/screenshots/05_reports.jpg) | ![notices](docs/screenshots/06_notices.jpg) |
+
+| FAQ |  |
+|-----|--|
+| ![faqs](docs/screenshots/07_faqs.jpg) |  |
 
 ---
 
